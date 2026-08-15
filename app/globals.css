@@ -1,26 +1,929 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* =========================================================
+   THEME
+   ========================================================= */
+
+@theme inline {
+  /* Fonts */
+  --font-ibm-plex-sans: "IBM Plex Sans", sans-serif;
+  --font-bebas-neue: var(--bebas-neue);
+
+  /* Shadcn */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Primary */
+  --color-primary-admin: #25388C;
+
+  /* Green */
+  --color-green: #027A48;
+  --color-green-100: #ECFDF3;
+  --color-green-400: #4C7B62;
+  --color-green-500: #2CC171;
+  --color-green-800: #027A48;
+
+  /* Red */
+  --color-red: #EF3A4B;
+  --color-red-400: #F46F70;
+  --color-red-500: #E27233;
+  --color-red-800: #EF3A4B;
+
+  /* Blue */
+  --color-blue-100: #0089F1;
+
+  /* Light */
+  --color-light-100: #D6E0FF;
+  --color-light-200: #EED1AC;
+  --color-light-300: #F8F8FF;
+  --color-light-400: #EDF1F1;
+  --color-light-500: #8D8D8D;
+  --color-light-600: #F9FAFB;
+  --color-light-700: #E2E8F0;
+  --color-light-800: #F8FAFC;
+
+  /* Dark */
+  --color-dark-100: #16191E;
+  --color-dark-200: #3A354E;
+  --color-dark-300: #232839;
+  --color-dark-400: #1E293B;
+  --color-dark-500: #0F172A;
+  --color-dark-600: #333C5C;
+  --color-dark-700: #464F6F;
+  --color-dark-800: #1E2230;
+
+  /* Gray */
+  --color-gray-100: #CBD5E1;
+
+  /* Breakpoint */
+  --breakpoint-xs: 480px;
+
+  /* Radius */
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+
+  /* Background image */
+  --background-image-pattern: url("/images/pattern.webp");
+}
+
+/* =========================================================
+   ROOT VARIABLES
+   ========================================================= */
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #16191e;
+
+  --card: #ffffff;
+  --card-foreground: #16191e;
+
+  --popover: #ffffff;
+  --popover-foreground: #16191e;
+
+  --primary: #e7c9a5;
+  --primary-foreground: #16191e;
+
+  --secondary: #f8fafc;
+  --secondary-foreground: #16191e;
+
+  --muted: #f8fafc;
+  --muted-foreground: #8d8d8d;
+
+  --accent: #f8fafc;
+  --accent-foreground: #16191e;
+
+  --destructive: #ef3a4b;
+
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #e7c9a5;
+
+  --chart-1: #25388c;
+  --chart-2: #027a48;
+  --chart-3: #e7c9a5;
+  --chart-4: #ef3a4b;
+  --chart-5: #0089f1;
+
+  --radius: 0.5rem;
+
+  --sidebar: #f8fafc;
+  --sidebar-foreground: #16191e;
+  --sidebar-primary: #e7c9a5;
+  --sidebar-primary-foreground: #16191e;
+  --sidebar-accent: #edf1f1;
+  --sidebar-accent-foreground: #16191e;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #e7c9a5;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+.dark {
+  --background: #16191e;
+  --foreground: #f8fafc;
+
+  --card: #232839;
+  --card-foreground: #f8fafc;
+
+  --popover: #232839;
+  --popover-foreground: #f8fafc;
+
+  --primary: #e7c9a5;
+  --primary-foreground: #16191e;
+
+  --secondary: #333c5c;
+  --secondary-foreground: #f8fafc;
+
+  --muted: #333c5c;
+  --muted-foreground: #cbd5e1;
+
+  --accent: #333c5c;
+  --accent-foreground: #f8fafc;
+
+  --destructive: #ef3a4b;
+
+  --border: #464f6f;
+  --input: #464f6f;
+  --ring: #e7c9a5;
+
+  --chart-1: #e7c9a5;
+  --chart-2: #2cc171;
+  --chart-3: #0089f1;
+  --chart-4: #ef3a4b;
+  --chart-5: #4c7b62;
+
+  --sidebar: #1e2230;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #e7c9a5;
+  --sidebar-primary-foreground: #16191e;
+  --sidebar-accent: #333c5c;
+  --sidebar-accent-foreground: #f8fafc;
+  --sidebar-border: #464f6f;
+  --sidebar-ring: #e7c9a5;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* =========================================================
+   BASE
+   ========================================================= */
+
+@layer base {
+  * {
+    border-color: var(--border);
+    outline-color: color-mix(in oklab, var(--ring) 50%, transparent);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+@utility hide-scrollbar {
+  &::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 0;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: transparent;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =========================================================
+   FORM
+   ========================================================= */
+
+@utility form-btn {
+  display: inline-flex;
+  min-height: 3.5rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  background-color: var(--primary);
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-dark-100);
 }
+
+@utility form-input {
+  min-height: 3.5rem;
+  width: 100%;
+  border: none;
+  background-color: var(--color-dark-300);
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.form-input::placeholder {
+  font-weight: 400;
+  color: var(--color-light-100);
+}
+
+.form-input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* =========================================================
+   BOOK CARD
+   ========================================================= */
+
+@utility book-title {
+  margin-top: 0.5rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+
+  @media (width >= 480px) {
+    font-size: 1.25rem;
+  }
+}
+
+@utility book-genre {
+  margin-top: 0.25rem;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  font-size: 0.875rem;
+  font-style: italic;
+  color: var(--color-light-100);
+
+  @media (width >= 480px) {
+    font-size: 1rem;
+  }
+}
+
+@utility book-loaned {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.25rem;
+
+  @media (max-width: 479px) {
+    justify-content: center;
+  }
+}
+
+@utility book-btn {
+  margin-top: 0.75rem;
+  min-height: 3.5rem;
+  width: 100%;
+  background-color: var(--color-dark-600);
+  font-family: var(--font-bebas-neue);
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+@utility borrowed-book {
+  position: relative;
+  width: 100%;
+  border-radius: 1rem;
+  padding: 1.25rem;
+  background: linear-gradient(180deg, #12141d 0%, #12151f 100%);
+
+  @media (width >= 480px) {
+    width: fit-content;
+  }
+}
+
+@utility borrowed-book_cover {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  padding: 1rem 2.5rem;
+
+  @media (width >= 1024px) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* =========================================================
+   BOOK COVER
+   ========================================================= */
+
+@utility book-cover_extra_small {
+  width: 28.95px;
+  height: 2.5rem;
+}
+
+@utility book-cover_small {
+  width: 55px;
+  height: 76px;
+}
+
+@utility book-cover_medium {
+  width: 144px;
+  height: 199px;
+}
+
+@utility book-cover_regular {
+  width: 114px;
+  height: 169px;
+
+  @media (width >= 480px) {
+    width: 174px;
+    height: 239px;
+  }
+}
+
+@utility book-cover_wide {
+  width: 256px;
+  height: 354px;
+
+  @media (width >= 480px) {
+    width: 296px;
+    height: 404px;
+  }
+}
+
+/* =========================================================
+   BOOK LIST
+   ========================================================= */
+
+@utility book-list {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+
+  @media (max-width: 479px) {
+    justify-content: space-between;
+  }
+
+  @media (width >= 480px) {
+    gap: 2.5rem;
+  }
+}
+
+/* =========================================================
+   BOOK OVERVIEW
+   ========================================================= */
+
+@utility book-overview {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  gap: 3rem;
+
+  @media (width >= 640px) {
+    gap: 8rem;
+  }
+
+  @media (width >= 1280px) {
+    flex-direction: row;
+    gap: 2rem;
+  }
+}
+
+.book-overview h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  color: white;
+}
+
+@media (width >= 768px) {
+  .book-overview h1 {
+    font-size: 4.5rem;
+  }
+}
+
+@utility book-info {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 1.25rem;
+  color: var(--color-light-100);
+}
+
+@utility book-copies {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.25rem;
+}
+
+.book-copies p {
+  font-size: 1.25rem;
+  color: var(--color-light-100);
+}
+
+.book-copies p span {
+  margin-left: 0.5rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.book-description {
+  margin-top: 0.5rem;
+  text-align: justify;
+  font-size: 1.25rem;
+  color: var(--color-light-100);
+}
+
+@utility book-overview_btn {
+  margin-top: 1rem;
+  min-height: 3.5rem;
+  width: fit-content;
+  background-color: var(--primary);
+  color: var(--color-dark-100);
+
+  &:hover {
+    background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   FILE UPLOAD
+   ========================================================= */
+
+@utility upload-btn {
+  display: flex;
+  min-height: 3.5rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  border-radius: 0.375rem;
+}
+
+@utility upload-filename {
+  margin-top: 0.25rem;
+  text-align: center;
+  font-size: 0.75rem;
+}
+
+@utility progress {
+  border-radius: 9999px;
+  background-color: var(--color-green-800);
+  padding: 0.125rem;
+  text-align: center;
+  font-family: var(--font-bebas-neue);
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-light-100);
+}
+
+/* =========================================================
+   SEARCH
+   ========================================================= */
+
+@utility search {
+  position: relative;
+  margin-top: 2.5rem;
+  display: flex;
+  min-height: 3.5rem;
+  width: 100%;
+  align-items: center;
+  border-radius: 0.75rem;
+  background-color: var(--color-dark-300);
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@utility search-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-weight: 700;
+  color: white;
+}
+
+.search-input::placeholder {
+  font-weight: 400;
+  color: var(--color-light-100);
+}
+
+.search-input:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* =========================================================
+   BOOK RECEIPT
+   ========================================================= */
+
+@utility book-receipt_admin-btn {
+  border-radius: 0.375rem;
+  background-color: var(--color-light-300);
+  font-weight: 600;
+  color: var(--color-primary-admin);
+
+  &:hover {
+    background-color: color-mix(in oklab, var(--color-light-300) 80%, transparent);
+  }
+}
+
+/* =========================================================
+   BOOK TICKET
+   ========================================================= */
+
+#book-ticket {
+  position: relative;
+  margin-top: 2.5rem;
+  display: none;
+  width: 544px;
+  overflow: hidden;
+  background-color: var(--color-dark-300);
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+#book-ticket #book-details div {
+  border: 1px solid color-mix(in oklab, var(--color-light-100) 10%, transparent);
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+}
+
+#book-ticket #book-details div p:first-child {
+  font-size: 0.75rem;
+  color: var(--color-light-700);
+}
+
+#book-ticket #book-details div p:last-child {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: white;
+}
+
+#book-ticket #book-divider div:first-child {
+  position: absolute;
+  left: -0.875rem;
+  top: 50%;
+  width: 1.75rem;
+  height: 1.75rem;
+  transform: translateY(-50%);
+  border-radius: 9999px;
+  background-color: black;
+}
+
+#book-ticket #book-divider div:last-child {
+  position: absolute;
+  right: -0.875rem;
+  top: 50%;
+  width: 1.75rem;
+  height: 1.75rem;
+  transform: translateY(-50%);
+  border-radius: 9999px;
+  background-color: black;
+}
+
+@utility book-ticket-circles {
+  position: absolute;
+  inset-inline: 0;
+  bottom: -1.5rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.375rem;
+}
+
+/* =========================================================
+   NOT FOUND
+   ========================================================= */
+
+@utility not-found {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#not-found {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#not-found h4 {
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: white;
+}
+
+#not-found p {
+  width: 360px;
+  margin-top: 0.25rem;
+  color: var(--color-light-100);
+}
+
+@utility not-found-btn {
+  min-width: 360px;
+  min-height: 3rem;
+  margin-top: 1.5rem;
+  background-color: var(--primary);
+  font-family: var(--font-bebas-neue);
+  font-size: 1.25rem;
+  color: var(--color-dark-100);
+
+  &:hover {
+    background-color: color-mix(in oklab, var(--primary) 90%, transparent);
+  }
+}
+
+/* =========================================================
+   PAGINATION
+   ========================================================= */
+
+#pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+@utility pagination-btn_light {
+  background-color: var(--color-light-300);
+  color: var(--color-dark-300);
+
+  &:hover {
+    background-color: color-mix(in oklab, var(--color-light-300) 70%, transparent);
+  }
+}
+
+@utility pagination-btn_dark {
+  background-color: var(--color-dark-300);
+
+  &:hover {
+    background-color: var(--color-dark-100);
+  }
+}
+
+#pagination p {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.375rem;
+  padding: 0.375rem 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* =========================================================
+   SORT
+   ========================================================= */
+
+@utility select-trigger {
+  height: 2.5rem;
+  width: 10rem;
+  border: 1px solid var(--color-dark-100);
+  background-color: var(--color-dark-300);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: var(--color-light-100);
+}
+
+@utility select-content {
+  border: 1px solid var(--color-dark-100);
+  background-color: var(--color-dark-300);
+  color: var(--color-light-100);
+}
+
+@utility select-item {
+  &:focus {
+    background-color: var(--color-dark-600);
+    color: var(--color-light-100);
+  }
+}
+
+/* =========================================================
+   GRADIENTS
+   ========================================================= */
+
+@utility gradient-vertical {
+  background: linear-gradient(180deg, #12141d 0%, #12151f 100%);
+}
+
+@utility gradient-gray {
+  background: linear-gradient(270deg, #37363a 0%, #353637 100%);
+}
+
+@utility gradient-blue {
+  background: linear-gradient(180deg, #232839 0%, #12141d 100%);
+}
+
+/* =========================================================
+   AUTH
+   ========================================================= */
+
+@utility auth-container {
+  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
+  color: var(--color-light-100);
+
+  @media (width >= 640px) {
+    flex-direction: row;
+  }
+}
+
+@utility auth-form {
+  position: relative;
+  margin-top: auto;
+  margin-bottom: auto;
+  display: flex;
+  min-height: 100vh;
+  flex: 1;
+  align-items: center;
+  background-image: url("/images/pattern.webp");
+  background-size: cover;
+  background-position: top;
+  background-color: var(--color-dark-100);
+  padding: 2.5rem 1.25rem;
+
+  @media (width >= 640px) {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+@utility auth-box {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: 100%;
+  max-width: 36rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-radius: 0.5rem;
+  padding: 2.5rem;
+  background: linear-gradient(180deg, #12141d 0%, #12151f 100%);
+}
+
+@utility auth-illustration {
+  position: sticky;
+  height: 10rem;
+  width: 100%;
+
+  @media (width >= 640px) {
+    top: 0;
+    height: 100vh;
+    flex: 1;
+  }
+}
+
+/* =========================================================
+   ROOT
+   ========================================================= */
+
+@utility root-container {
+  display: flex;
+  min-height: 100vh;
+  flex: 1;
+  flex-direction: column;
+  background-image: url("/images/pattern.webp");
+  background-size: cover;
+  background-position: top;
+  background-color: var(--color-dark-100);
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+
+  @media (width >= 480px) {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  @media (width >= 768px) {
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+}
+
+/* =========================================================
+   BOOK DETAILS
+   ========================================================= */
+
+@utility book-details {
+  display: flex;
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+  flex-direction: column;
+  gap: 4rem;
+
+  @media (width >= 1024px) {
+    margin-top: 9rem;
+    flex-direction: row;
+  }
+}
+
+.book-details h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* =========================================================
+   LIBRARY
+   ========================================================= */
+
+@utility library {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: 100%;
+  max-width: 36rem;
+  flex-direction: column;
+  text-align: center;
+}
+
+@utility library-subtitle {
+  font-size: 1.125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--color-light-100);
+}
+
+@utility library-title {
+  margin-top: 0.5rem;
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: white;
+
+  @media (width >= 480px) {
+    font-size: 3rem;
+  }
+}
+
